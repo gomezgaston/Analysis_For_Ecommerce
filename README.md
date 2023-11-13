@@ -16,7 +16,6 @@ The e-commerce company is expecting below analysis using the data
 - Understand the retention of customers on month on month basis
 - How the revenues from existing/new customers on month on month basis
 - How the discounts playing role in the revenues?
-- Analyse KPI’s like Revenue, number of orders, average order value, number of customers (existing/new), quantity, by category, by month, by week, by day etc…
 - Understand the trends/seasonality of sales by category, location, month etc…
 - How number order varies and sales with different days?
 - Calculate the Revenue, Marketing spend, percentage of marketing spend out of revenue, Tax, percentage of delivery charges by month.
@@ -36,7 +35,7 @@ The e-commerce company is expecting below analysis using the data
 ## Cross-Selling (Which products are selling together)
 - You can perform exploratory analysis & market basket analysis to understand which of items can be bundled together.
 
-## Predicting Next Purchase Day(How soon each customer can visit the store (0-30 days, 30-60 days, 60-90 days, 90+ days)
+## Predicting Next Purchase Day (How soon each customer can visit the store (0-30 days, 30-60 days, 60-90 days, 90+ days)
 - For this, we need create dependent variable at customer level (average days per one transaction for only repeat customers and divide into groups 0-30 days, 30-60 days, 60-90 days and 90+ days) then build classification model to predict next purchase of given customer.
 
 
