@@ -1,12 +1,16 @@
+
+![Imagen](images/herramientas-de-analitica-web.jpg)
+
 # Introduccion:
 En este proyecto de Python, llevamos a cabo un análisis detallado de un conjunto de datos que abarca diversas columnas de valores financieros. El conjunto de datos comprende información relacionada con los movimientos de compras de un E-Commerce. Nuestro objetivo principal consiste en extraer ideas clave sobre las tendencias y patrones presentes en estos registros financieros. A través de la visualización y resumen de los datos, buscamos comprender la evolución del comportamiento de los ingresos a lo largo del tiempo y analizar la distribución de estos . Este análisis nos proporcionará información valiosa acerca de las tendencias financieras, lo cual resultará fundamental para la toma de decisiones basada en datos.
-
-![Imagen](images\herramientas-de-analitica-web.jpg)
 
 
 # Datos
 
-El dataset con el que se trabajara consta de siguientes 4 archivos:
+Los datos fueron extraidos de Kaggle.com. Si gusta, puede revisar el conjunto de datos original en el siguiente [link](https://www.kaggle.com/datasets/rishikumarrajvansh/marketing-insights-for-e-commerce-company/data)
+
+
+El dataset consta de siguientes 4 archivos:
 
 
 **Online_Sales.csv:** This file contains actual orders data (point of Sales data) at transaction level with
@@ -50,9 +54,13 @@ below variables.
 - *GST:* Percentage of GST
 
 
-# Business Objective:
-La compañia de E-Commerce espera cumplir con los siguientes requisitos
+# Objetivos:
 
+Los objetivos que se buscarán son los mismos que plantea el proyecto original, a saber:
+
+># Business Objective:
+>La compañia de E-Commerce espera cumplir con los siguientes requisitos
+>
 > ## Calculate Invoice amount or sale_amount or revenue for each transaction and item level
 > - Invoice Value =(( QuantityAvg_price)(1-Dicount_pct)*(1+GST))+Delivery_Charges
 >
@@ -73,7 +81,19 @@ La compañia de E-Commerce espera cumplir con los siguientes requisitos
 >
 >## Predicting Customer Lifetime Value (Low Value/Medium Value/High Value)
 >- Define a dependent variable with categories low value, medium value, high value using customer revenue Then perform a Classification model.
+----
 
+# Contenido. 
+
+Este proyecto consta de los siguientes archivos:
+
+**EDA.ipynb**: Analisis exploratorio, donde se corroboró la integridad de los datasets, y luego donde se cumplio los objetivos
+
+**Report.md**: Reporte detallado donde se cumplen con los objetivos propuestos referente a la exploracion de datos
+
+**Sementation_and_LTV.ipynb**: Notebook donde se realizo la segmentacion de clientes y el modelo de ML para agrupar nuevos clientes.
+
+**sql_database.ipynb**: *proximamente*
 
 
 # EDA Preliminar:
@@ -82,201 +102,66 @@ La compañia de E-Commerce espera cumplir con los siguientes requisitos
 
 ![Imagen_1](images/output.png)
 
-En este gráfico, observamos la distribución general de nuestros clientes según su género y localidad. También se aprecia una agrupación de clientes en función de su antigüedad (tenure).
+
+En este gráfico, se presenta la distribución general de nuestros clientes según su género y localidad. Además, se destaca una agrupación de clientes en función de su antigüedad (tenure).
+
+Este análisis proporciona una visión integral de la diversidad de la base de clientes, revelando patrones relacionados con la distribución geográfica y la lealtad de los clientes a lo largo del tiempo. La agrupación por antigüedad puede ofrecer insights valiosos sobre la retención de clientes y su relación con factores geográficos o demográficos. Esta información es esencial para adaptar estrategias de marketing, servicio al cliente y desarrollo de productos según las características específicas de cada segmento, contribuyendo así a una comprensión más profunda de la dinámica del mercado y a una toma de decisiones más informada.
 
 ### Marketing_Spends
 
 ![Imagen_2](images/output2.png)
 
-El primer gráfico presenta los gastos diarios realizados en marketing, abarcando tanto el ámbito offline como el digital.
+El primer gráfico muestra los gastos diarios realizados en marketing, abarcando tanto el ámbito offline como el digital.
 
 En el segundo gráfico, estos gastos se encuentran agrupados mensualmente, incorporando además una tercera línea que representa el total de gastos.
 
+Esta representación visual ofrece una perspectiva detallada de la distribución diaria de los gastos de marketing, permitiendo identificar posibles patrones o variaciones a lo largo del mes. Al consolidar los gastos mensualmente y agregar la línea que representa el total, se obtiene una visión más global y permite evaluar la magnitud de la inversión en marketing en un periodo más amplio. Este análisis facilita la toma de decisiones estratégicas, como la asignación de presupuesto y la evaluación del rendimiento general de la estrategia de marketing.
 ### Online_Sales
 
 ![Imagen_3](images/output3.png)
 
 En estos gráficos, se pueden identificar los usuarios que realizaron el mayor número de transacciones, tanto en términos de cantidad de compras como de montos invertidos. Además, se presenta una distribución general que refleja las tendencias por temporada y destaca los productos más comercializados, así como aquellos que generan mayores ganancias.
 
+Esta visualización permite destacar a los usuarios más activos, proporcionando información clave sobre el comportamiento de compra y su contribución al volumen total de transacciones. Asimismo, la representación de tendencias estacionales y productos destacados es fundamental para la planificación estratégica, como la gestión de inventario y la promoción de productos específicos en momentos clave. Analizar la relación entre los usuarios destacados y los productos más rentables puede llevar a estrategias más efectivas para maximizar el valor de cada transacción.
+
+
+# Segmentacion.
+
+Para realizar la segmentacion de los usuarios se utilizaron dos tecnicas. 
+
+## Basada en euristica, haciendo con reglas definidas utilizando como paramentro el RFM:
+
+**Recency (R - Recencia):** Evalúa cuándo fue la última vez que un cliente realizó una compra. Este aspecto se centra en la temporalidad y mide la "frescura" de la interacción más reciente del cliente con el negocio.
+
+**Frequency (F - Frecuencia):** Indica con qué frecuencia un cliente realiza compras o interactúa con el negocio en un período de tiempo específico. Mide la repetición de las transacciones y cuántas veces un cliente ha comprado o participado en cierto período.
+
+**Monetary Value (M - Valor Monetario)**: Refleja cuánto dinero ha gastado un cliente en total durante un período determinado. Este aspecto se centra en el valor económico de las transacciones realizadas por el cliente.
+
+Se dividio la basde de clientes en 4 estratos: Standar, Silver, Gold y Premium
+
+
+## Basada en Machine Learning:
+
+Aplicando el modelo de clustering KNN
+
+![Imagen_4](images\segmentation.png)
+
+
+# Prediciendo Lifetime Value.
+
+Para esto se realizo una distincion entre clientes basadas en reglas predefinidas. 
+
+Luego se realizo un modelo de Machine Learnign de clasificacion (DecisionTreeClassifier) para categorizar los nuevos clientes
+
 
 ---
-
-# Cumpliendo los objetivos de negocio
-
-- ### Understanding how many customers acquired every month
-
-![Imagen_4](images/count_of_customers_by_month.png)
-
-Para este objetivo se realizo un histograma agrupando los clientes por su primer compra en el año. Notamos como varios de ellos realizan su primer compra entre Junio y Agosto, siendo este ultimo el pico
-
-
-- ### Understand the retention of customers on month on month basis
-
-![Imagen_5](images/cohort_analisis_customer.png)
-
-Para cumplir este objetivo se realizo un agrupamiento de clientes por cohortes mensuales. 
-
-Se hace evidente la estacionalidad del conjunto. 
-La Cohorte de Marzo parece tener tasas de retención relativamente altas en los primeros meses. Especialmente, la retención en el tercer mes es significativamente alta (20%).
-
-- ### How the revenues from existing/new customers on month on month basis
-
-### Diferenciacion por cohortes
-![Imagen_8](images/rev_cohorts.png)
-
-
-### Diferenciacion por numero de compras
-![Imagen_7](images/rev_month2.png)
+---
 
 
 
-### Diferenciacion por tiempo como cliente
-![Imagen_6](images/rev_month.png)
 
-Se categorizó a los clientes en "nuevo clientes" y "clientes existentes" que tenemos clientes que llevan hasta 50 meses comprando, para categorizar los clientes entre "nuevo clientes" y "clientes ya existentes" se utilizo el threshold de 18 meses. 
+# TODO
 
+Creacion de base de datos en SQL SERVER y normalizacion
 
-### How the discounts playing role in the revenues?
-
-![Imagen_9](images/coupon.png)
-
-
-### Understand the trends/seasonality of sales by category, location, month etc…
-- ### Tendencias por Localidad
-![Imagen_11](images/sales_location.png)
-
-- ### Tendencias por Categoria
-![Imagen_10](images/sales_category.png)
-
-
-### How number order varies and sales with different days?
-
-![Imagen_12](images/daily.png)
-
-
-### How marketing spend is impacting on revenue?
-
-![Imagen_13](images/Rev_mark.png)
-
-### Which product was appeared the most in the transactions?
-
-![Imagen_14](images/products.png)
-
-### Which product was purchased mostly based on the quantity?
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Product ID</th>
-      <th>Product Description</th>
-      <th>Product Category</th>
-      <th>Quantity</th>
-      <th>Revenue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>GGOEGBMJ013399</td>
-      <td>Sport Bag</td>
-      <td>Bags</td>
-      <td>7321</td>
-      <td>42068.25962</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>GGOEGDHC018299</td>
-      <td>Google 22 oz Water Bottle</td>
-      <td>Drinkware</td>
-      <td>9728</td>
-      <td>37418.94532</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>GGOEGFKQ020399</td>
-      <td>Google Laptop and Cell Phone Stickers</td>
-      <td>Office</td>
-      <td>5847</td>
-      <td>24533.63450</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>GGOEGFSR022099</td>
-      <td>Google Kick Ball</td>
-      <td>Lifestyle</td>
-      <td>5549</td>
-      <td>15676.89884</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>GGOEGFYQ016599</td>
-      <td>Foam Can and Bottle Cooler</td>
-      <td>Drinkware</td>
-      <td>5098</td>
-      <td>11559.08054</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>GGOEGGOA017399</td>
-      <td>Maze Pen</td>
-      <td>Office</td>
-      <td>16234</td>
-      <td>19786.07210</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>GGOEGOAQ012899</td>
-      <td>Ballpoint LED Light Pen</td>
-      <td>Office</td>
-      <td>4861</td>
-      <td>15697.98510</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>GGOEGOLC014299</td>
-      <td>Google Metallic Notebook Set</td>
-      <td>Office</td>
-      <td>6496</td>
-      <td>41481.37750</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>GGOENEBJ079499</td>
-      <td>Nest Learning Thermostat 3rd Gen-USA - Stainle...</td>
-      <td>Nest-USA</td>
-      <td>4570</td>
-      <td>731870.69120</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>GGOENEBQ078999</td>
-      <td>Nest Cam Outdoor Security Camera - USA</td>
-      <td>Nest-USA</td>
-      <td>5206</td>
-      <td>671620.06650</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-# Performing Customer Segmentation
-
-
-![Imgaen_15](images/segmentation.png)
-
-
+Dashboard
