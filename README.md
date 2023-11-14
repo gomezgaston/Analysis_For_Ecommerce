@@ -144,7 +144,7 @@ Se dividio la basde de clientes en 4 estratos: Standar, Silver, Gold y Premium
 
 Aplicando el modelo de clustering KNN
 
-![Imagen_4](images\segmentation.png)
+![Imagen_4](images/segmentation.png)
 
 
 # Prediciendo Lifetime Value.
